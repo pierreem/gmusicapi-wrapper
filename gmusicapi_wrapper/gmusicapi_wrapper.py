@@ -322,6 +322,11 @@ class MusicManagerWrapper(_Base):
 				artist = song.get('artist', "<empty>")
 				album = song.get('album', "<empty>")
 
+				if artist == "" :
+					artist = u'no_artist'
+				if album == "" :
+					album = u'no_album'
+
 				logger.debug(
 					"Downloading {title} -- {artist} -- {album} ({song_id})".format(
 						title=title, artist=artist, album=album, song_id=song_id
@@ -335,9 +340,14 @@ class MusicManagerWrapper(_Base):
 
 				metadata = mutagen.File(temp.name, easy=True)
 
+				metadata['artist'] =  [artist]
+				metadata['album'] =  [album]
+
+
+
 				if "%suggested%" in template:
 					template = template.replace("%suggested%", suggested_filename.replace('.mp3', ''))
-
+				
 				if os.name == 'nt' and cygpath_re.match(template):
 					template = convert_cygwin_path(template)
 
