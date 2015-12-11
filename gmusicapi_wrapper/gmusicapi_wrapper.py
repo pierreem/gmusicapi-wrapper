@@ -343,7 +343,8 @@ class MusicManagerWrapper(_Base):
 				metadata['artist'] =  [artist]
 				metadata['album'] =  [album]
 
-
+				if len(metadata['title']) > 254 :
+					metadata['title']=metadata['title'][0:254]
 
 				if "%suggested%" in template:
 					template = template.replace("%suggested%", suggested_filename.replace('.mp3', ''))
