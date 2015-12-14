@@ -369,7 +369,7 @@ class MusicManagerWrapper(_Base):
 							raise
 
 				dirname, basename = os.path.split(filepath)
-				if len(basename) > 254
+				if len(basename) > 254 :
 					filepath = filepath.replace(basename,basename[0:254])
 
 				shutil.move(temp.name, filepath)
