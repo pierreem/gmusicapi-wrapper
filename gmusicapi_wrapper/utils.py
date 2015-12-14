@@ -314,11 +314,7 @@ def template_to_filepath(template, metadata, template_patterns=TEMPLATE_PATTERNS
 						metadata.save()
 					except:
 						pass
-				# ensure no element be more than 254 char long (unix filename max size)
-				new_part = metadata[template_patterns[key]] 
-				if len(new_part) > 254 :
-					new_part=new_part[0:254]
-				parts[i] = parts[i].replace(key,new_part)
+				parts[i] = parts[i].replace(key,metadata[template_patterns[key]] )
 
 		for char in CHARACTER_REPLACEMENTS:
 			if char in parts[i]:
